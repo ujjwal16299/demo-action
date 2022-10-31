@@ -1,0 +1,31 @@
+name: ctmd-static-dev
+on: [workflow_dispatch]
+
+    
+
+jobs:
+  deploy-dev:
+    runs-on: ubuntu-latest
+    environment:
+      name: dev      
+    defaults:
+      run:
+        working-directory:  ./
+
+    steps: 
+    - uses: actions/checkout@v3
+      with:
+        clean: false
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '16.x'
+
+    - run: npm install -g serverless  
+    - run: npm install -g serverless-s3-sync
+    
+        
+
+    - name:  deploy 
+      run: sls deploy --stage dev
+
+
