@@ -1,0 +1,22 @@
+{
+  "name": "zv-test",
+  "root": "plugins/test-word/",
+  "tags": ["feature:"],
+  "sourceRoot": "plugins/test-word/src",
+  "targets": {
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "npm install"
+      }
+    },
+    "publish": {
+      "executor": "nx:run-commands",
+      "options": {
+        "cwd": "plugins/test-word/",
+        "commands": ["npm version {args.version}", "npm publish"],
+        "parallel": false
+      }
+    }
+  }
+}
